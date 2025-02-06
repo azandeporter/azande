@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azande Porter - Website</title>
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- External CSS Libraries -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <link
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    rel="stylesheet"
+  />
+  
+  <!-- Local JS -->
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress"></div>
+
+  <!-- NAVIGATION BAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="#home">
+        <img src="personalllogo.png" alt="AP Logo" />
+      </a>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="home-section">
+    <div class="profile-left">
+      <div class="profile-img-container">
+        <img
+          src="myprofilee.JPG"
+          alt="Profile Picture"
+          class="profile-img"
+        />
+      </div>
+      <div class="social-icons">
+        <a
+          href="https://linkedin.com/in/azandeporter"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+    <div class="profile-right">
+      <h1 id="typewriter-container">
+        <span id="typewriter"></span>
+        <span class="cursor"></span>
+      </h1>
+      <p>Just a human obsessed with technology and culture.</p>
+      <p>&nbsp;</p>
+      <p>
+        I'm a software engineer focused on cloud technologies and back-end
+        development. Passionate about creating scalable solutions beyond
+        traditional IT.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="skills-section" data-aos="fade-up">
+    <h2>Skills</h2>
+    <p>&nbsp;</p>
+    <div class="skills-container">
+      <div class="skills-box">
+        <h3>Frontend Development</h3>
+        <p>Building modern, responsive UIs.</p>
+        <p>&nbsp;</p>
+        <div class="skills-tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>React</span>
+        </div>
+      </div>
+
+      <div class="skills-box">
+        <h3>Backend Development</h3>
+        <p>Scalable server-side programming.</p>
+        <p>&nbsp;</p>
+        <div class="skills-tags">
+          <span>Python</span>
+          <span>Go</span>
+          <span>Flask</span>
+          <span>Unit Testing (pytest)</span>
+          <span>RESTful API Design</span>
+        </div>
+      </div>
+
+      <div class="skills-box">
+        <h3>Cloud Computing</h3>
+        <p>Working with Cloud Technologies.</p>
+        <p>&nbsp;</p>
+        <div class="skills-tags">
+          <span>Amazon Web Services (AWS)</span>
+          <span>Docker</span>
+          <span>Kubernetes</span>
+          <span>IaC (Terraform &amp; CloudFormation)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section
+    id="experience"
+    class="experience-section"
+    data-aos="fade-up"
+  >
+    <h2>Experience</h2>
+    <p>&nbsp;</p>
+    <div class="experience-container">
+      <div class="experience-box">
+        <h3>DevOps Software Developer Intern</h3>
+        <p><strong>SAS - Cary, NC</strong></p>
+        <ul>
+          <li>
+            Adapted a RESTful service integrated into CI/CD workflows,
+            managing 1,000+ concurrent builds for SAS Viya.
+          </li>
+          <li>
+            Implemented test-driven development in Python using pytest
+            to automate functional and integration testing.
+          </li>
+          <li>
+            Enhanced software delivery using Kubernetes for container
+            orchestration, improving packaging efficiency.
+          </li>
+        </ul>
+      </div>
+
+      <div class="experience-box">
+        <h3>Software Engineer Intern</h3>
+        <p><strong>TIAA - Charlotte, NC</strong></p>
+        <ul>
+          <li>
+            Designed and implemented an internal workflow management
+            system in Python, JavaScript, and HTML, increasing
+            productivity.
+          </li>
+          <li>
+            Enhanced cluster workflows by integrating REST APIs into a
+            Flask-based web application, improving performance across
+            data centers.
+          </li>
+          <li>
+            Developed scalable solutions that doubled application
+            capacity, ensuring reliability under increased load.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section
+    id="contact"
+    class="contact-section"
+    data-aos="fade-up"
+  >
+    <h2>Contact Me</h2>
+    <p>&nbsp;</p>
+    <form id="contact-form">
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your Name"
+        required
+      />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your Email"
+        required
+      />
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Your Message"
+        required
+      ></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="form-message"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Azande Porter. All rights reserved.</p>
+    <div class="footer-social-icons">
+      <a
+        href="https://linkedin.com/in/azandeporter"
+        target="_blank"
+      >
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- AOS Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  </script>
+</body>
+</html>
