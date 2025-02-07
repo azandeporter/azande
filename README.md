@@ -7,8 +7,8 @@ You can visit the live website here: https://azandeporter.github.io/azande/
 Features
 
 About Me: A brief introduction about myself and my professional journey.
-Projects: Highlights of my key projects with descriptions and links.
 Skills: A list of my technical skills and tools I work with.
+Experience: Highlights of my experience with professional projects.
 Contact: Ways to get in touch with me.
 
 Technologies Used
