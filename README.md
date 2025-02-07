@@ -1,9 +1,8 @@
-Project Name: Personal Website
 Welcome to my Personal Website repository! This project showcases my skills, experiences, and interests as a software engineer focused on cloud-native technologies and backend development.
 
 Live Demo
 
-You can visit the live website here: https://azandeporter.github.io/personal-website/
+You can visit the live website here: https://azandeporter.github.io/azande/
 
 Features
 
