@@ -6,7 +6,7 @@
   }
   
   body {
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserratt', sans-serif;
     line-height: 1.6;
     color: #ffffff;
     background-color: #000000;
@@ -177,7 +177,7 @@
   .skills-box:hover,
   .experience-box:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px #D4AF37;
   }
   
   .skills-tags span {
