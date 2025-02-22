@@ -26,7 +26,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       typewriterElement.textContent += typewriterText.charAt(charIndex);
       charIndex++;
       // Delay before typing the next character
-      setTimeout(typeWriter, 100); // Adjust speed here (100ms per character)
+      setTimeout(typeWriter, 100);
     } else {
       // Animation complete, reset for replay (optional)
       setTimeout(() => {
