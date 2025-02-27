@@ -15,7 +15,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
   });
   
-  const typewriterText = "Azande Porter"; // Text to be typed
+  const typewriterText = "Azande Porter";
   const typewriterElement = document.getElementById('typewriter'); // Target element
   
   let charIndex = 0; // Track current character index
@@ -28,9 +28,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       // Delay before typing the next character
       setTimeout(typeWriter, 100);
     } else {
-      // Animation complete, reset for replay (optional)
       setTimeout(() => {
-        typewriterElement.textContent = ""; // Clear text
+        typewriterElement.textContent = "";
         charIndex = 0;
         typeWriter(); // Restart animation
       }, 5000);
@@ -52,14 +51,42 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
   
   // Contact form submission
-  document
-    .getElementById('contact-form')
-    .addEventListener('submit', function (e) {
-      e.preventDefault();
-      const formMessage = document.getElementById('form-message');
-      formMessage.textContent =
-        'Thank you for your message! I will get back to you soon.';
-      formMessage.style.color = '#4CAF50';
-      this.reset();
+  const form = document.getElementById("email-signup-form");
+    const emailInput = document.getElementById("email-input");
+
+    if (!form || !emailInput) {
+        console.error("Form or input field not found.");
+        return;
+    }
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const email = emailInput.value.trim();
+        if (!email) {
+            alert("Please enter a valid email.");
+            return;
+        }
+
+        try {
+            // Call my backend
+            const response = await fetch("https://408gic7h21.execute-api.us-east-1.amazonaws.com/v1", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("You're now subscribed to Strive Syndicate!");
+                emailInput.value = ""; // Clear input after success
+            } else {
+                alert(data.error || "Subscription failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong. Try again later.");
+        }
     });
   
