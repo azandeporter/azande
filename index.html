@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Azande Porter - Website</title>
+  <title>Azande Porter</title>
   <link rel="stylesheet" href="styles.css" />
   <link
     rel="stylesheet"
@@ -13,9 +13,6 @@
     href="https://unpkg.com/aos@2.3.1/dist/aos.css"
     rel="stylesheet"
   />
-  <link rel="icon" href="/static/favicon.ico" type="image/x-icon" 
-  />
-  
   <script src="scripts.js" defer></script>
 </head>
 <body>
@@ -34,168 +31,183 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="https://strivesyndicate.beehiiv.com/subscribe" target="_blank">Newsletter</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HOME SECTION -->
   <section id="home" class="home-section">
-    <div class="profile-left">
-      <div class="profile-img-container">
-        <img
-          src="static/myprofilee.JPG"
-          alt="Profile Picture"
-          class="profile-img"
-        />
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text" data-aos="fade-up">
+          <h1 id="typewriter-container">
+            <span id="typewriter"></span>
+            <span class="cursor"></span>
+          </h1>
+          <p class="hero-subtitle">Just a human obsessed with technology, culture, and the endless possibilities they create.</p>
+          <p class="hero-description">
+            I'm a software engineer interested in cloud-native solutions and back-end
+            development, with a flair for building scalable and efficient systems that create meaningful impact.
+          </p>
+          <div class="hero-cta">
+            <a href="#skills" class="btn-primary">View My Skills</a>
+            <a href="https://linkedin.com/in/azandeporter" target="_blank" class="btn-secondary">
+              <i class="fab fa-linkedin-in"></i>
+              Connect
+            </a>
+          </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left">
+          <div class="profile-img-container">
+            <img
+              src="static/myprofilee.JPG"
+              alt="Azande Porter"
+              class="profile-img"
+            />
+          </div>
+        </div>
       </div>
-      <div class="social-icons">
-        <a
-          href="https://linkedin.com/in/azandeporter"
-          target="_blank"
-        >
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </div>
-    <div class="profile-right">
-      <h1 id="typewriter-container">
-        <span id="typewriter"></span>
-        <span class="cursor"></span>
-      </h1>
-      <p>Just a human obsessed with technology, culture, and the endless possibilities they create.</p>
-      <p>&nbsp;</p>
-      <p>
-        I'm a software engineer specializing in cloud-native solutions and back-end
-        development, with a flair for building scalable and efficient systems that create meaningful impact.
-      </p>
     </div>
   </section>
 
   <!-- SKILLS SECTION -->
-<section id="skills" class="skills-section" data-aos="fade-up">
-    <h2>Skills</h2>
-    <p>&nbsp;</p>
-    <div class="skills-container">
-        <div class="skills-box">
-            <h3>Frontend Development</h3>
-            <p>Building modern, responsive UIs</p>
-            <p>&nbsp;</p>
-            <div class="skills-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>React</span>
-            </div>
-        </div>
-
-        <div class="skills-box">
-            <h3>Backend Development</h3>
-            <p>Scalable server-side programming</p>
-            <p>&nbsp;</p>
-            <div class="skills-tags">
-                <span>Python</span>
-                <span>Go</span>
-                <span>Django/Flask</span>
-                <span>MongoDB</span>
-                <span>Unit Testing (Pytest)</span>
-                <span>RESTful API Design</span>
-            </div>
-        </div>
-
-        <div class="skills-box">
-            <h3>Cloud Computing</h3>
-            <p>Working with Cloud-Native Technologies</p>
-            <p>&nbsp;</p>
-            <div class="skills-tags">
-                <span>Amazon Web Services (AWS)</span>
-                <span>Docker</span>
-                <span>Kubernetes</span>
-                <span>IaC (Terraform &amp; AWS CloudFormation)</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-  <!-- EXPERIENCE SECTION -->
-  <section
-    id="experience"
-    class="experience-section"
-    data-aos="fade-up"
-  >
-    <h2>Experience</h2>
-    <p>&nbsp;</p>
-    <div class="experience-container">
-      <div class="experience-box">
-        <h3>DevOps Software Developer Intern</h3>
-        <p><strong>SAS - Cary, NC</strong></p>
-        <p>&nbsp;</p>
-        <ul>
-          <li>
-            Adapted a RESTful service integrated into CI/CD workflows,
-            managing 1,000+ concurrent builds for SAS Viya.
-          </li>
-          <li>
-            Implemented test-driven development in Python using pytest
-            to automate functional and integration testing.
-          </li>
-          <li>
-            Enhanced software delivery using Kubernetes for container
-            orchestration, improving packaging efficiency.
-          </li>
-        </ul>
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Skills & Expertise</h2>
+        <p>Technologies and tools I use to build impactful solutions</p>
       </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Frontend Development</h3>
+          <p>Building modern, responsive UIs that deliver exceptional user experiences</p>
+          <div class="skills-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
 
-      <div class="experience-box">
-        <h3>Software Engineer Intern</h3>
-        <p><strong>TIAA - Charlotte, NC</strong></p>
-        <p>&nbsp;</p>
-        <ul>
-          <li>
-            Designed and implemented an internal workflow management
-            system in Python, JavaScript, and HTML, increasing
-            productivity.
-          </li>
-          <li>
-            Enhanced cluster workflows by integrating REST APIs into a
-            Flask-based web application, improving performance across
-            data centers.
-          </li>
-          <li>
-            Developed scalable solutions that doubled application
-            capacity, ensuring reliability under increased load.
-          </li>
-        </ul>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3>Backend Development</h3>
+          <p>Scalable server-side programming with robust architecture</p>
+          <div class="skills-tags">
+            <span>Python</span>
+            <span>Go</span>
+            <span>Django/Flask</span>
+            <span>MongoDB</span>
+            <span>Unit Testing (Pytest)</span>
+            <span>RESTful API Design</span>
+          </div>
+        </div>
+
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3>Cloud Computing</h3>
+          <p>Working with cloud-native technologies for scalable solutions</p>
+          <div class="skills-tags">
+            <span>Amazon Web Services (AWS)</span>
+            <span>Docker</span>
+            <span>Kubernetes</span>
+            <span>IaC (Terraform & AWS CloudFormation)</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER SECTION -->
-  <section id="newsletter" data-aos="fade-up">
-    <header>
-      <img src="static/logoo.png" alt="Strive Syndicate Logo">
-    </header>
-    <p>&nbsp;</p>
-    <h1>Stop waiting for a seat at the table. Build your own.</h1>
-    <p>A weekly newsletter for underrepresented professionals serving real insights around career growth, personal development, and forging your own path.</p>
-    <p>Join the movement as I share my journey along with actionable insights to help you build a fulfilling career and lifestyle.</p>
-    
-    <form id="email-signup">
-      <input type="email" id="email-input" placeholder="Your Email" required>
-      <button>Join the Club</button>iamadmin
-    </form>
+  <!-- EXPERIENCE SECTION -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Professional Experience</h2>
+        <p>My journey in software engineering</p>
+      </div>
+      <div class="current-role-wrapper">
+        <div class="experience-card current-role" data-aos="fade-up" data-aos-delay="100">
+          <div class="experience-header">
+            <h3>Software Engineer I</h3>
+            <span class="company">LexisNexis Risk Solutions - Atlanta, GA</span>
+            <span class="duration">Current</span>
+          </div>
+          <p class="role-description">
+            Recently joined to contribute to cloud-native solutions. 
+          </p>
+        </div>
+      </div>
+      <div class="experience-grid">
+        <div class="experience-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="experience-header">
+            <h3>DevOps Software Developer Intern</h3>
+            <span class="company">SAS - Cary, NC</span>
+          </div>
+          <ul>
+            <li>
+              Adapted a RESTful service integrated into CI/CD workflows,
+              managing 1,000+ concurrent builds for SAS Viya.
+            </li>
+            <li>
+              Implemented test-driven development in Python using pytest
+              to automate functional and integration testing.
+            </li>
+            <li>
+              Enhanced software delivery using Kubernetes for container
+              orchestration, improving packaging efficiency.
+            </li>
+          </ul>
+        </div>
+
+        <div class="experience-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="experience-header">
+            <h3>Software Engineer Intern</h3>
+            <span class="company">TIAA - Charlotte, NC</span>
+          </div>
+          <ul>
+            <li>
+              Designed and implemented an internal workflow management
+              system in Python, JavaScript, and HTML, increasing
+              productivity.
+            </li>
+            <li>
+              Enhanced cluster workflows by integrating REST APIs into a
+              Flask-based web application, improving performance across
+              data centers.
+            </li>
+            <li>
+              Developed scalable solutions that doubled application
+              capacity, ensuring reliability under increased load.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Azande Porter. All rights reserved.</p>
-    <div class="footer-social-icons">
-      <a
-        href="https://linkedin.com/in/azandeporter"
-        target="_blank"
-      >
-        <i class="fab fa-linkedin-in"></i>
-      </a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <p>&copy; 2025 Azande Porter. All rights reserved.</p>
+        </div>
+        <div class="footer-right">
+          <a href="https://linkedin.com/in/azandeporter" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://strivesyndicate.beehiiv.com/subscribe" target="_blank">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -205,6 +217,7 @@
     AOS.init({
       duration: 1000,
       once: true,
+      offset: 100
     });
   </script>
 </body>

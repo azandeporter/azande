@@ -15,29 +15,44 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
   });
   
+  // Typewriter effect
   const typewriterText = "Azande Porter";
-  const typewriterElement = document.getElementById('typewriter'); // Target element
+  const typewriterElement = document.getElementById('typewriter');
   
-  let charIndex = 0; // Track current character index
+  let charIndex = 0;
+  let isDeleting = false;
   
   function typeWriter() {
-    if (charIndex < typewriterText.length) {
-      // Add the next character to the text content
-      typewriterElement.textContent += typewriterText.charAt(charIndex);
+    if (!typewriterElement) return;
+    
+    if (!isDeleting && charIndex < typewriterText.length) {
+      // Typing
+      typewriterElement.textContent = typewriterText.substring(0, charIndex + 1);
       charIndex++;
-      // Delay before typing the next character
       setTimeout(typeWriter, 100);
-    } else {
+    } else if (!isDeleting && charIndex === typewriterText.length) {
+      // Pause at the end
       setTimeout(() => {
-        typewriterElement.textContent = "";
-        charIndex = 0;
-        typeWriter(); // Restart animation
-      }, 5000);
+        isDeleting = true;
+        typeWriter();
+      }, 2000);
+    } else if (isDeleting && charIndex > 0) {
+      // Deleting
+      typewriterElement.textContent = typewriterText.substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(typeWriter, 50);
+    } else {
+      // Reset and restart
+      isDeleting = false;
+      charIndex = 0;
+      setTimeout(typeWriter, 1000);
     }
   }
   
   // Start the typewriter effect when the page loads
-  typeWriter();
+  document.addEventListener('DOMContentLoaded', () => {
+    typeWriter();
+  });
   
   // Scroll progress bar
   window.addEventListener('scroll', () => {
@@ -49,44 +64,4 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const progress = (scrollTop / scrollHeight) * 100;
     scrollProgress.style.width = `${progress}%`;
   });
-  
-  // Contact form submission
-  const form = document.getElementById("email-signup-form");
-    const emailInput = document.getElementById("email-input");
-
-    if (!form || !emailInput) {
-        console.error("Form or input field not found.");
-        return;
-    }
-
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const email = emailInput.value.trim();
-        if (!email) {
-            alert("Please enter a valid email.");
-            return;
-        }
-
-        try {
-            // Call my backend
-            const response = await fetch("https://408gic7h21.execute-api.us-east-1.amazonaws.com/v1", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                alert("You're now subscribed to Strive Syndicate!");
-                emailInput.value = ""; // Clear input after success
-            } else {
-                alert(data.error || "Subscription failed. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Something went wrong. Try again later.");
-        }
-    });
   
