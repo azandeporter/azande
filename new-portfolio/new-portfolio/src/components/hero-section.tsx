@@ -296,7 +296,8 @@ export function HeroSection() {
                     fill
                     className="object-cover"
                     priority
-                    sizes="(max-width: 768px) 320px, 384px"
+                    quality={95}
+                    sizes="(max-width: 768px) 320px, (max-width: 1024px) 400px, 500px"
                   />
 
                   {/* Overlay gradient */}
