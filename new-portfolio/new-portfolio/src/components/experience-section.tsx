@@ -10,7 +10,7 @@ import {
   CheckCircle,
   Code,
   TrendingUp,
-  Zap
+  Briefcase
 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
@@ -249,7 +249,7 @@ export function ExperienceSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium"
           >
-            <Zap className="w-4 h-4" />
+            <Briefcase className="w-4 h-4" />
             Professional Experience
           </motion.div>
           
