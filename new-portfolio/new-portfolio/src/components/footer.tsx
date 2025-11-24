@@ -40,9 +40,6 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center space-y-2"
           >
-            <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              Made with <Heart className="w-4 h-4 text-red-500" /> by Azande Porter
-            </p>
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Azande Porter. All rights reserved.
             </p>

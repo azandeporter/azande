@@ -126,7 +126,7 @@ export function Navigation({ activeSection }: NavProps) {
                   className="border-gold/30 text-gold hover:bg-gold hover:text-gold-foreground transition-all duration-300 group"
                 >
                   <a
-                    href="https://founderframes.substack.com/welcome"
+                    href="https://www.founderframes.co/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
