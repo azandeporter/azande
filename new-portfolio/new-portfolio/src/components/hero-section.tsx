@@ -169,7 +169,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-sm font-medium text-gold tracking-wider uppercase"
               >
-                Welcome to my world
+                Welcome!
               </motion.div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
