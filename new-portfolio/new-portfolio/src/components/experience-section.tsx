@@ -253,9 +253,9 @@ export function ExperienceSection() {
             Professional Experience
           </motion.div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight sm:leading-tight lg:leading-[1.15]">
             My Journey in
-            <span className="block text-gradient">Software Engineering</span>
+            <span className="block text-gradient mt-1">Software Engineering</span>
           </h2>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
