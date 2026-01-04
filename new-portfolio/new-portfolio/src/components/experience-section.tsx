@@ -255,8 +255,8 @@ export function ExperienceSection() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            From internships to full-time roles, I've built skills across enterprise 
-            systems, cloud infrastructure, and development environments.
+            From internships to full-time roles—building expertise across enterprise 
+            systems, cloud infrastructure, and development practices.
           </motion.p>
         </motion.div>
 
