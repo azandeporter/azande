@@ -70,11 +70,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="theme-color" content="#111114" />
         <link rel="icon" href="/assets/personalllogo.png" sizes="any" />
         <link rel="apple-touch-icon" href="/assets/personalllogo.png" />
       </head>
-      <body className="bg-background text-foreground antialiased">
+      <body className="bg-background text-foreground antialiased selection:bg-gold/20 selection:text-champagne">
         {children}
       </body>
     </html>

@@ -1,55 +1,51 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, ArrowUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-card/30 backdrop-blur-sm border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col items-center space-y-8">
-          {/* Back to Top Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Button
-              onClick={scrollToTop}
-              variant="outline"
-              size="sm"
-              className="border-gold/30 text-gold hover:bg-gold hover:text-gold-foreground transition-all duration-300 group"
-            >
-              <ArrowUp className="w-4 h-4 mr-2 group-hover:-translate-y-0.5 transition-transform duration-300" />
-              Back to Top
-            </Button>
-          </motion.div>
-
-
+    <footer className="relative border-t border-border/30">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <motion.div
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center space-y-2"
+            transition={{ duration: 0.6 }}
+            className="text-sm text-muted-foreground"
           >
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Azande Porter. All rights reserved.
-            </p>
-          </motion.div>
+            © {currentYear} Azande Porter
+          </motion.p>
 
+          {/* Back to Top */}
+          <motion.button
+            onClick={scrollToTop}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            whileHover={{ y: -2 }}
+            className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-gold transition-colors duration-300"
+          >
+            <span>Back to top</span>
+            <svg 
+              className="w-3 h-3 transition-transform duration-300 group-hover:-translate-y-0.5" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </motion.button>
         </div>
       </div>
-
-      {/* Background Effect */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent pointer-events-none" />
     </footer>
   );
 }

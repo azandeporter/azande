@@ -1,263 +1,245 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
-import { 
-  Server, 
-  Cloud, 
-  TestTube,
-  Workflow,
-  Layers
-} from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { useRef, useState } from 'react';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 
-interface SkillCardProps {
-  icon: React.ReactNode;
+interface SkillDomainProps {
+  number: string;
   title: string;
+  subtitle: string;
   description: string;
-  skills: string[];
+  technologies: string[];
   index: number;
-  isHovered: boolean;
-  onHover: (index: number | null) => void;
 }
 
-function SkillCard({ icon, title, description, skills, index, isHovered, onHover }: SkillCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+function SkillDomain({ number, title, subtitle, description, technologies, index }: SkillDomainProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [isHovered, setIsHovered] = useState(false);
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
-  const rotateX = useTransform(mouseY, [-100, 100], [10, -10]);
-  const rotateY = useTransform(mouseX, [-100, 100], [-10, 10]);
+  const springX = useSpring(mouseX, { damping: 30, stiffness: 200 });
+  const springY = useSpring(mouseY, { damping: 30, stiffness: 200 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left - rect.width / 2) * 0.03);
+    mouseY.set((e.clientY - rect.top - rect.height / 2) * 0.03);
   };
 
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
-    onHover(null);
+    setIsHovered(false);
   };
+
+  // Stagger delay based on grid position
+  const staggerDelay = index * 0.1;
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      style={{ 
-        rotateX: isHovered ? rotateX : 0, 
-        rotateY: isHovered ? rotateY : 0,
-        transformPerspective: 1200,
-      }}
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.6, delay: staggerDelay }}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => onHover(index)}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="group cursor-pointer"
+      className="group"
     >
-      <Card className="relative p-6 h-full bg-card/50 backdrop-blur-sm border-gold/60 hover:border-gold transition-all duration-500 overflow-hidden">
-        {/* Background glow effect */}
+      <motion.div
+        style={{ x: springX, y: springY }}
+        className="relative p-8 lg:p-10 border border-border/40 bg-card/30 backdrop-blur-sm transition-colors duration-300 hover:border-gold/30 hover:bg-card/50"
+      >
+        {/* Hover gradient */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-gold-bright/5"
+          className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] via-transparent to-amber/[0.02]"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
 
-        {/* Animated border */}
-        <motion.div
-          className="absolute inset-0 rounded-lg"
-          style={{
-            background: 'linear-gradient(45deg, transparent, var(--gold), transparent)',
-            mask: 'linear-gradient(white, white) content-box, linear-gradient(white, white)',
-            maskComposite: 'exclude',
-            padding: '1px',
-          }}
-          initial={{ opacity: 0, rotate: 0 }}
-          animate={{ 
-            opacity: isHovered ? 0.3 : 0,
-            rotate: isHovered ? 360 : 0,
-          }}
-          transition={{ duration: 2, ease: 'linear' }}
-        />
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-8">
+            <span className="font-serif text-5xl lg:text-6xl italic text-gold/60 group-hover:text-gold transition-colors duration-300">
+              {number}
+            </span>
+            
+            {/* Corner decoration */}
+            <div className="w-8 h-8 relative">
+              <div className="absolute top-0 right-0 w-full h-full border-t border-r border-gold/20 group-hover:border-gold/40 transition-colors duration-300" />
+            </div>
+          </div>
 
-        <div className="relative z-10 space-y-4">
-          {/* Icon */}
-          <motion.div
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.1 : 1 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-gold/20 to-gold-bright/10 text-gold group-hover:from-gold/30 group-hover:to-gold-bright/20 transition-all duration-300"
-          >
-            {icon}
-          </motion.div>
-
-          {/* Title */}
-          <h3 className="text-xl font-semibold text-foreground group-hover:text-gold transition-colors duration-300">
-            {title}
-          </h3>
+          {/* Title block */}
+          <div className="mb-6">
+            <h3 className="text-2xl lg:text-3xl font-serif text-foreground mb-1">
+              {title}
+            </h3>
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-muted">
+              {subtitle}
+            </p>
+          </div>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
             {description}
           </p>
 
-          {/* Skills Tags */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            {skills.map((skill, skillIndex) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: (index * 0.1) + (skillIndex * 0.05) }}
-                className="px-2 py-1 text-xs font-medium bg-secondary/50 text-secondary-foreground rounded-md hover:bg-gold/20 hover:text-gold transition-all duration-300"
-              >
-                {skill}
-              </motion.span>
-            ))}
+          {/* Technologies */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-px bg-gradient-to-r from-gold/40 to-transparent" />
+              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Stack</span>
+            </div>
+            
+            <div className="flex flex-wrap gap-2">
+              {(technologies || []).map((tech, i) => (
+                <motion.span
+                  key={tech}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.4, delay: staggerDelay + 0.1 + i * 0.03 }}
+                  className="px-3 py-1.5 text-xs font-medium bg-secondary/60 text-secondary-foreground border border-border/30 hover:border-gold/30 hover:text-gold transition-colors duration-200"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Floating particles */}
-        {isHovered && (
-          <>
-            {Array.from({ length: 3 }).map((_, particleIndex) => (
-              <motion.div
-                key={particleIndex}
-                className="absolute w-1 h-1 bg-gold rounded-full pointer-events-none"
-                initial={{
-                  x: Math.random() * 300,
-                  y: Math.random() * 200,
-                  opacity: 0,
-                  scale: 0,
-                }}
-                animate={{
-                  y: [null, -50, -100],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: particleIndex * 0.2,
-                  repeat: Infinity,
-                  repeatDelay: Math.random() * 2,
-                }}
-              />
-            ))}
-          </>
-        )}
-      </Card>
+        {/* Bottom accent line */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-gold to-champagne"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ transformOrigin: 'left' }}
+        />
+      </motion.div>
     </motion.div>
   );
 }
 
 export function SkillsSection() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
-  const skills = [
+  const domains = [
     {
-      icon: <Server className="w-6 h-6" />,
-      title: 'Backend Development',
-      description: 'Scalable server-side programming with robust architecture and efficient data processing.',
-      skills: ['Python', 'Go', 'Django/Flask', 'RESTful APIs', 'Microservices']
+      number: '01',
+      title: 'Backend Systems',
+      subtitle: 'Server Architecture',
+      description: 'Engineering robust server-side solutions with emphasis on performance, maintainability, and elegant API design.',
+      technologies: ['Python', 'Go', 'TypeScript', 'Django', 'Flask', 'REST APIs']
     },
     {
-      icon: <Cloud className="w-6 h-6" />,
-      title: 'Cloud Computing',
-      description: 'Working with cloud-native technologies for scalable, resilient, and cost-effective solutions.',
-      skills: ['Amazon Web Services (AWS)', 'Microsoft Azure', 'Docker', 'Kubernetes', 'Serverless',]
+      number: '02',
+      title: 'Cloud Infrastructure',
+      subtitle: 'Distributed Computing',
+      description: 'Building cloud-native applications that scale while maintaining operational stability.',
+      technologies: ['AWS', 'Azure', 'Terraform', 'Docker', 'Kubernetes', 'Networking Protocols']
     },
     {
-      icon: <Workflow className="w-6 h-6" />,
-      title: 'Infrastructure as Code',
-      description: 'Automating infrastructure deployment and management through code-based approaches.',
-      skills: ['Terraform', 'AWS CloudFormation', 'CI/CD', 'GitHub Actions', 'Infrastructure Automation']
-    },
-    {
-      icon: <TestTube className="w-6 h-6" />,
-      title: 'Testing & Quality',
-      description: 'Implementing comprehensive testing strategies to ensure code reliability and maintainability.',
-      skills: ['Unit Testing (Pytest)', 'Integration Testing', 'Test-Driven Development', 'Code Quality', 'Performance Testing']
+      number: '03',
+      title: 'DevOps Tools',
+      subtitle: 'Continuous Delivery',
+      description: 'Implementing DevOps practices and CI/CD pipelines that accelerate development velocity.',
+      technologies: ['GitHub Actions', 'Kubernetes', 'HashiCorp Vault', 'Prometheus', 'JFrog Artifactory']
     }
   ];
 
   return (
-    <section id="skills" className="relative py-20 lg:py-32 overflow-hidden" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/10 to-transparent pointer-events-none" />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-4 mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium"
-          >
-            <Layers className="w-4 h-4" />
-            Skills & Expertise
-          </motion.div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
-            Technologies I Use to Build
-            <span className="block text-gradient">Impactful Solutions</span>
-          </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive skillset spanning backend, cloud infrastructure, 
-            and modern development practices to deliver exceptional results.
-          </p>
-        </motion.div>
+    <section id="skills" className="relative py-32 lg:py-40 overflow-hidden grain" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/5 to-background" />
+        <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gold/[0.02] rounded-full blur-3xl" />
+      </div>
 
-        {/* Skills Grid - Pyramid Layout */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-20 lg:mb-28"
         >
-          {/* Top Row - Backend Development */}
-          <div className="flex justify-center mb-6 lg:mb-8">
-            <div className="w-full max-w-sm">
-              <SkillCard
-                {...skills[0]}
-                index={0}
-                isHovered={hoveredCard === 0}
-                onHover={setHoveredCard}
-              />
-            </div>
-          </div>
-          
-          {/* Bottom Row - Three Cards */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {skills.slice(1).map((skill, index) => (
-              <div key={skill.title} className="w-full max-w-sm mx-auto">
-                <SkillCard
-                  {...skill}
-                  index={index + 1}
-                  isHovered={hoveredCard === index + 1}
-                  onHover={setHoveredCard}
-                />
-              </div>
-            ))}
-          </div>
+          {/* Eyebrow */}
+          <motion.div 
+            className="flex items-center gap-4 mb-8"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <motion.div 
+              className="w-12 h-px bg-gradient-to-r from-gold to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              style={{ transformOrigin: 'left' }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] text-gold-muted font-medium">
+              Expertise
+            </span>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h2 
+            className="text-4xl sm:text-5xl lg:text-6xl font-serif leading-[1.1] mb-8"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="block text-foreground">Technologies I use to</span>
+            <span className="block text-gradient font-italic">build</span>
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p 
+            className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            A curated toolkit spanning backend engineering, cloud infrastructure, 
+            and modern development practices.
+          </motion.p>
         </motion.div>
 
+        {/* Skills grid - 2 on top, 1 centered below */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {domains.slice(0, 2).map((domain, index) => (
+            <SkillDomain key={domain.number} {...domain} index={index} />
+          ))}
+        </div>
+        
+        {/* Third card centered */}
+        <div className="flex justify-center mt-6 lg:mt-8">
+          <div className="w-full md:w-1/2 md:max-w-none">
+            {domains.slice(2).map((domain, index) => (
+              <SkillDomain key={domain.number} {...domain} index={index + 2} />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom flourish */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex justify-center mt-20"
+        >
+          <div className="flex items-center gap-6">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+            <span className="font-serif italic text-gold/60 text-sm">& always learning</span>
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

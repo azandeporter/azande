@@ -15,13 +15,13 @@ export default function Home() {
     <>
       <ScrollProgress />
       <Navigation activeSection={activeSection} />
-      
+
       <main className="relative">
         <HeroSection />
         <SkillsSection />
         <ExperienceSection />
       </main>
-      
+
       <Footer />
     </>
   );
