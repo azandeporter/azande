@@ -15,7 +15,7 @@ const serif = Source_Serif_4({
 });
 
 const description =
-  "Azande Porter is a Site Reliability Engineer II at LexisNexis Risk Solutions, building and running cloud infrastructure across production platforms on Azure AKS with Terraform, Helm, and Argo CD.";
+  "Azande Porter is a technologist fascinated by building reliable products and running them at scale.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://azandeporter.com"),
