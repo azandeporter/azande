@@ -1,65 +1,55 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans-src",
+  display: "swap",
+});
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif-src",
+  display: "swap",
+});
+
+const description =
+  "Azande Porter is a Site Reliability Engineer II at LexisNexis Risk Solutions, building and running cloud infrastructure across production platforms on Azure AKS with Terraform, Helm, and Argo CD.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://azandeporter.com"),
   title: {
-    default: "Azande Porter - Software Engineer",
-    template: "%s | Azande Porter"
+    default: "Azande Porter",
+    template: "%s · Azande Porter",
   },
-  description: "Software engineer passionate about cloud-native solutions, backend development, and building scalable systems. Currently at LexisNexis Risk Solutions, with experience in Python, Go, AWS, and Kubernetes.",
-  keywords: [
-    "Software Engineer",
-    "Cloud Computing",
-    "Backend Development", 
-    "Python",
-    "Go",
-    "AWS",
-    "Kubernetes",
-    "DevOps",
-    "Full Stack Developer",
-    "Atlanta"
-  ],
-  authors: [{ name: "Azande Porter" }],
+  description,
+  authors: [{ name: "Azande Porter", url: "https://azandeporter.com" }],
   creator: "Azande Porter",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://azandeporter.com",
-    title: "Azande Porter - Software Engineer",
-    description: "Software engineer passionate about cloud-native solutions and building scalable systems.",
-    siteName: "Azande Porter Portfolio",
-    images: [
-      {
-        url: "/assets/myprofilee.JPG",
-        width: 1200,
-        height: 630,
-        alt: "Azande Porter - Software Engineer",
-      },
-    ],
+    siteName: "Azande Porter",
+    title: "Azande Porter",
+    description,
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Azande Porter - Software Engineer",
-    description: "Software engineer passionate about cloud-native solutions and building scalable systems.",
-    images: ["/assets/myprofilee.JPG"],
+    card: "summary",
+    title: "Azande Porter",
+    description,
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: "verification-code-here", // Add your Google Search Console verification code
   },
   alternates: {
     canonical: "https://azandeporter.com",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0b",
 };
 
 export default function RootLayout({
@@ -68,15 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <meta name="theme-color" content="#111114" />
-        <link rel="icon" href="/assets/personalllogo.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/assets/personalllogo.png" />
-      </head>
-      <body className="bg-background text-foreground antialiased selection:bg-gold/20 selection:text-champagne">
-        {children}
-      </body>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

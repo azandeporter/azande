@@ -18,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Node build scripts, not application code: CommonJS is correct here.
+      "scripts/**",
     ],
   },
 ];
